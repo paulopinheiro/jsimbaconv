@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
-public class ZipExtractor {
+public final class ZipExtractor {
     private final ZipInputStream zipStream;
     private final File extractedDirectory;
 

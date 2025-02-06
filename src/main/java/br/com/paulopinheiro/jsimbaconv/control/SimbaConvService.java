@@ -6,7 +6,7 @@ import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-public class SimbaConvService {
+public final class SimbaConvService {
     private final File zipFile;
     private File convertedDirectory;
 
@@ -16,12 +16,13 @@ public class SimbaConvService {
     }
 
     private void convert() throws IOException {
-        setConvertedDirectory(extractZipFile(this.zipFile));
+        File extractedDirectory = extractZipFile(this.zipFile);
+        setConvertedDirectory(extractedDirectory);
         replaceTextFilesByPDF();
     }
 
     private void replaceTextFilesByPDF() throws IOException {
-        searchAndConvert(this.getConvertedDirectory());
+        searchAndConvert(getConvertedDirectory());
     }
 
     private void searchAndConvert(File file) throws IOException {
