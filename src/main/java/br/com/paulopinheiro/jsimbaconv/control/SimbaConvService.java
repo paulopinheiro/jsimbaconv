@@ -2,6 +2,9 @@ package br.com.paulopinheiro.jsimbaconv.control;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.FileSystems;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 public class SimbaConvService {
     private final File zipFile;
@@ -14,6 +17,34 @@ public class SimbaConvService {
 
     private void convert() throws IOException {
         setConvertedDirectory(extractZipFile(this.zipFile));
+        replaceTextFilesByPDF();
+    }
+
+    private void replaceTextFilesByPDF() throws IOException {
+        searchAndConvert(this.getConvertedDirectory());
+    }
+
+    private void searchAndConvert(File file) throws IOException {
+        for (File f:file.listFiles()) {
+            if (f.isDirectory()) searchAndConvert(f);
+            else {
+                if (isPlainTextFile(f)) {
+                    convertTextToPdf(f);
+                    //f.delete();
+                }
+            }
+        }
+    }
+
+    private boolean isPlainTextFile(File f) throws IOException {
+        Path path = FileSystems.getDefault().getPath(f.getAbsolutePath(), new String());
+        String mimeType = Files.probeContentType(path);
+
+        return mimeType.toLowerCase().contains("text/plain");
+    }
+
+    private void convertTextToPdf(File f) throws IOException {
+        PdfConverter converter = new PdfConverter(f);
     }
 
     private File extractZipFile(File zipFile) throws IOException {
