@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileFilter;
 
 public class Jsimbaconv extends javax.swing.JFrame {
@@ -25,6 +26,7 @@ public class Jsimbaconv extends javax.swing.JFrame {
     private void convertChosenFile() {
         try {
             SimbaConvService simbaService = new SimbaConvService(chosenFile);
+            JOptionPane.showMessageDialog(this, "Arquivo convertido em " + simbaService.getConvertedDirectory().getAbsolutePath(), "Informação", JOptionPane.INFORMATION_MESSAGE);
         } catch (IOException ex) {
             Logger.getLogger(Jsimbaconv.class.getName()).log(Level.SEVERE, null, ex);
         }
