@@ -11,6 +11,7 @@ public class Jsimbaconv extends javax.swing.JFrame {
     private File chosenFile;
 
     public Jsimbaconv() {
+        this.setLocationRelativeTo(null);
         initComponents();
         setChosenFile(null);
     }
@@ -155,6 +156,7 @@ public class Jsimbaconv extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new Jsimbaconv().setVisible(true);
             }
