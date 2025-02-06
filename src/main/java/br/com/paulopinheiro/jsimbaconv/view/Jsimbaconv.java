@@ -28,6 +28,7 @@ public class Jsimbaconv extends javax.swing.JFrame {
             SimbaConvService simbaService = new SimbaConvService(chosenFile);
             JOptionPane.showMessageDialog(this, "Arquivo convertido em " + simbaService.getConvertedDirectory().getAbsolutePath(), "Informação", JOptionPane.INFORMATION_MESSAGE);
         } catch (IOException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Erro ao processar arquivo", JOptionPane.ERROR_MESSAGE);
             Logger.getLogger(Jsimbaconv.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
