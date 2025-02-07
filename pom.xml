@@ -10,12 +10,40 @@
             <groupId>com.itextpdf</groupId>
             <artifactId>itext-core</artifactId>
             <version>9.0.0</version>
-            <type>pom.sha512</type>
+            <type>pom</type>
         </dependency>
     </dependencies>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.release>17</maven.compiler.release>
-        <exec.mainClass>br.com.paulopinheiro.jsimbaconv.Jsimbaconv</exec.mainClass>
+        <maven.compiler.release>8</maven.compiler.release>
+        <exec.mainClass>br.com.paulopinheiro.jsimbaconv.view.Jsimbaconv</exec.mainClass>
     </properties>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>3.4.1</version>
+                <configuration>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                    <archive>
+                        <manifest>
+                            <mainClass>br.com.paulopinheiro.jsimbaconv.view.Jsimbaconv</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>
